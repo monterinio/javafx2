@@ -49,13 +49,14 @@
 	-fx-border-width: 1px 1px 1px 1px;
 }
 
-#select-bar .arrow-button {
+#choice-box .arrow-button {
     -fx-background-color: linear-gradient(#7AD6FF, #A8EDFF, #CCFFFF);
 }
 
-#select-bar .label	 {
+#choice-box {
 	-fx-background-color: linear-gradient(#7AD6FF, #A8EDFF, #CCFFFF);
 }
+
 
 #table-1 .column-header-background, .nested-column-header, .table-column {
 	-fx-background-color: linear-gradient(#7AD6FF, #A8EDFF, #CCFFFF);
@@ -64,4 +65,5 @@
 #menu-bar .label .text {
 	-fx-font-weight: bold;
 }
+
 

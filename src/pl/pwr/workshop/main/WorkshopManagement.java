@@ -22,6 +22,7 @@ public class WorkshopManagement extends Application {
 		Scene scene = new Scene(parent);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle(Strings.appName);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		primaryStage.setOnCloseRequest(x->{
 			x.consume();

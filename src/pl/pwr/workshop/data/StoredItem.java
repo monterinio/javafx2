@@ -1,13 +1,22 @@
 package pl.pwr.workshop.data;
 
 public abstract class StoredItem {
-	private String nazwa;
+	private String name;
+	private int quantity;
 
-	public String getNazwa() {
-		return nazwa;
+	public String getName() {
+		return name;
 	}
 
-	public void setNazwa(String nazwa) {
-		this.nazwa = nazwa;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

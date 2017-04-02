@@ -7,16 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.pwr.workshop.controller.AddItemController;
 import pl.pwr.workshop.controller.ConnectionDataProvider;
 import pl.pwr.workshop.controller.ProcessingController;
 import pl.pwr.workshop.data.ConnectionData;
 import pl.pwr.workshop.data.Data;
+import pl.pwr.workshop.data.Element;
 
 public class WindowUtil {
 
 	public void loadWindow(String path, String appName) {
 		try {
 			Stage subWindow = new Stage();
+			subWindow.setResizable(false);
 			subWindow.initModality(Modality.APPLICATION_MODAL);
 			Parent parent = (Parent) FXMLLoader.load(getClass().getResource(path));
 			Scene scene = new Scene(parent);
@@ -62,4 +65,6 @@ public class WindowUtil {
 			e.printStackTrace();
 		}
 	}
+
+
 }

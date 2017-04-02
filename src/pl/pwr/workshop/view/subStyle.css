@@ -23,3 +23,11 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 14px;
 }
+
+#choice-box .arrow-button {
+    -fx-background-color: linear-gradient(#7AD6FF, #A8EDFF, #CCFFFF);
+}
+
+#choice-box {
+	-fx-background-color: linear-gradient(#7AD6FF, #A8EDFF, #CCFFFF);
+}

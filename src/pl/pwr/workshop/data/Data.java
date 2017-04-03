@@ -14,15 +14,18 @@ public class Data implements Serializable {
 	private ObservableList<PipeCable> pipeCableList;
 	private ObservableList<Element> elementList;
 	private ObservableList<ValveMotor> valveMotorList;
+	private ObservableList<StoredItem> displayedList;
 
 	public Data() {
 		this.pipeCableList = FXCollections.observableArrayList();
 		this.elementList = FXCollections.observableArrayList();
 		this.valveMotorList = FXCollections.observableArrayList();
+		this.displayedList = FXCollections.observableArrayList();
 	}
 
-	public ObservableList<PipeCable> getPipeCableList() {
-		return pipeCableList;
+	public ObservableList<StoredItem> getPipeCableList() {
+		displayedList.addAll(pipeCableList);
+		return displayedList;
 	}
 
 	public void setPipeCableList(ObservableList<PipeCable> pipeCableList) {

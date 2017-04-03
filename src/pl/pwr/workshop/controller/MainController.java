@@ -2,8 +2,6 @@ package pl.pwr.workshop.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,8 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pl.pwr.workshop.data.ConnectionData;
 import pl.pwr.workshop.data.Data;
-import pl.pwr.workshop.data.Pipe;
-import pl.pwr.workshop.data.PipeCable;
+import pl.pwr.workshop.data.StoredItem;
 import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.utils.SaveLoadUtil;
 import pl.pwr.workshop.utils.WindowUtil;
@@ -43,11 +40,11 @@ public class MainController implements Initializable {
 	private MenuItem aboutItem;
 
 	@FXML
-	private TableView<PipeCable> workshopList;
+	private TableView<StoredItem> workshopList;
     @FXML
-    private TableColumn<PipeCable, SimpleStringProperty> nameColumn;
+    private TableColumn<StoredItem, String> nameColumn;
     @FXML
-    private TableColumn<PipeCable, Integer> quantityColumn;
+    private TableColumn<StoredItem, Integer> quantityColumn;
 
 	public MainController() {
 		saveLoadUtil = new SaveLoadUtil();
@@ -66,9 +63,8 @@ public class MainController implements Initializable {
 	}
 
 	private void initializeTable() {
-		nameColumn.setCellValueFactory(new PropertyValueFactory<PipeCable, SimpleStringProperty>("fullName"));
-		quantityColumn.setCellValueFactory(new PropertyValueFactory<PipeCable, Integer>("quantity"));
-		workshopList.setItems(data.getPipeCableList());
+		nameColumn.setCellValueFactory(new PropertyValueFactory<StoredItem, String>("fullName"));
+		quantityColumn.setCellValueFactory(new PropertyValueFactory<StoredItem, Integer>("quantity"));
 	}
 
 	private void configureMenuItems() {
@@ -84,10 +80,12 @@ public class MainController implements Initializable {
 	}
 
 	private void configureChoiceBox() {
-		choiceBox.setOnAction(x-> {
-			for(int i=0;i<data.getPipeCableList().size();i++) {
-				Pipe pipe = (Pipe) data.getPipeCableList().get(i);
-				System.out.println(pipe.getFullName());
+		choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
+			if(newValue.intValue() == 0) {
+				workshopList.setItems(data.getPipeCableList());
+			}
+			else {
+				workshopList.setItems(null);
 			}
 		});
 	}

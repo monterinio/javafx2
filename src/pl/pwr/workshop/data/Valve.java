@@ -2,18 +2,23 @@ package pl.pwr.workshop.data;
 
 public class Valve extends ValveMotor {
 	private String type;
-	private String dimension;
+	private int size;
 
-	public String getDimension() {
-		return dimension;
+	public int getSize() {
+		return size;
 	}
-	public void setDimension(String dimension) {
-		this.dimension = dimension;
+	public void setSize(int size) {
+		this.size = size;
 	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public Valve(String name, String type, int size, int quantity) {
+		super(name, quantity);
+		this.type = type;
+		this.size = size;
 	}
 }

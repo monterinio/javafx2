@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.workshop.controller.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@mainStyle.css" prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.workshop.controller.MainController">
    <top>
       <MenuBar id="menu-bar" BorderPane.alignment="CENTER">
         <menus>
@@ -51,11 +51,10 @@
                         <Insets left="20.0" />
                      </padding>
                   </HBox>
-                  <TableView id="table-1" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <TableView id="table-1" fx:id="workshopList" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="L.p." />
-                      <TableColumn prefWidth="137.0" text="Nazwa" />
-                        <TableColumn prefWidth="75.0" text="Ilość" />
+                      <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Nazwa" />
+                        <TableColumn fx:id="quantityColumn" text="Ilosc" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
@@ -77,9 +76,8 @@
                   <HBox prefHeight="50.0" prefWidth="200.0" />
                   <TableView id="table-2" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="L.p." />
-                      <TableColumn prefWidth="137.0" text="Nazwa" />
-                        <TableColumn prefWidth="75.0" text="Ilość" />
+                      <TableColumn prefWidth="200.0" text="Nazwa" />
+                        <TableColumn text="Ilosc" />
                     </columns>
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />

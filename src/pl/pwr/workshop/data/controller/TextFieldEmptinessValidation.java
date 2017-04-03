@@ -8,8 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 class TextFieldEmptinessValidation implements ChangeListener<String> {
-	private Button addItem;
-	private ArrayList <TextField> textFieldArray;
+	protected Button addItem;
+	protected ArrayList <TextField> textFieldArray;
 	public TextFieldEmptinessValidation(Button addItem, ArrayList <TextField> textFieldArray) {
 		this.addItem = addItem;
 		this.textFieldArray = textFieldArray;

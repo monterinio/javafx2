@@ -1,6 +1,6 @@
 package pl.pwr.workshop.data;
 
-public abstract class Element extends StoredItem {
+public class Element extends StoredItem {
 	private String type;
 	private String threadType;
 
@@ -15,5 +15,11 @@ public abstract class Element extends StoredItem {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Element(String name, String type, String threadType, int quantity) {
+		super(name, quantity);
+		this.type = type;
+		this.threadType = threadType;
 	}
 }

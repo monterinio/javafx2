@@ -3,25 +3,29 @@ package pl.pwr.workshop.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import pl.pwr.workshop.data.ConnectionData;
 import pl.pwr.workshop.data.Data;
-import pl.pwr.workshop.data.Element;
-import pl.pwr.workshop.data.Screw;
+import pl.pwr.workshop.data.Pipe;
+import pl.pwr.workshop.data.PipeCable;
 import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.utils.SaveLoadUtil;
 import pl.pwr.workshop.utils.WindowUtil;
 
 public class MainController implements Initializable {
 
-	private Data data;
 	private ConnectionData connectionData;
 	private WindowUtil windowUtil;
 	private SaveLoadUtil saveLoadUtil;
+	private Data data;
 
 	@FXML
     private Button confirmOrder;
@@ -38,18 +42,33 @@ public class MainController implements Initializable {
 	@FXML
 	private MenuItem aboutItem;
 
+	@FXML
+	private TableView<PipeCable> workshopList;
+    @FXML
+    private TableColumn<PipeCable, SimpleStringProperty> nameColumn;
+    @FXML
+    private TableColumn<PipeCable, Integer> quantityColumn;
+
 	public MainController() {
-		data = new Data();
 		saveLoadUtil = new SaveLoadUtil();
 		windowUtil = new WindowUtil();
 		connectionData = saveLoadUtil.loadApplicationState();
+		data = new Data();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		initializeTable();
 		configureMenuItems();
 		configureButtons();
+		configureChoiceBox();
 		choiceBox.setItems(Strings.choiceBox);
+	}
+
+	private void initializeTable() {
+		nameColumn.setCellValueFactory(new PropertyValueFactory<PipeCable, SimpleStringProperty>("fullName"));
+		quantityColumn.setCellValueFactory(new PropertyValueFactory<PipeCable, Integer>("quantity"));
+		workshopList.setItems(data.getPipeCableList());
 	}
 
 	private void configureMenuItems() {
@@ -60,11 +79,18 @@ public class MainController implements Initializable {
 
 	private void configureButtons() {
 		addElement.setOnAction(x-> {
-			windowUtil.loadWindow(Strings.addItemLayoutName, Strings.addElementName);
+			windowUtil.loadWindowAndSendData(Strings.addItemLayoutName, Strings.addElementName, data);
 		});
 	}
 
-
+	private void configureChoiceBox() {
+		choiceBox.setOnAction(x-> {
+			for(int i=0;i<data.getPipeCableList().size();i++) {
+				Pipe pipe = (Pipe) data.getPipeCableList().get(i);
+				System.out.println(pipe.getFullName());
+			}
+		});
+	}
 
 	public ConnectionData getConnectionData() {
 		return connectionData;

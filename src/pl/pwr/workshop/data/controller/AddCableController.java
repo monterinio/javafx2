@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import pl.pwr.workshop.data.Cable;
 import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Pipe;
+import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
+import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
 public class AddCableController implements Initializable, DataProvider {
 

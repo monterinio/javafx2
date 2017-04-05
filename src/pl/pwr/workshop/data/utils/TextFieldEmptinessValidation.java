@@ -1,4 +1,4 @@
-package pl.pwr.workshop.data.controller;
+package pl.pwr.workshop.data.utils;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-class TextFieldEmptinessValidation implements ChangeListener<String> {
+public class TextFieldEmptinessValidation implements ChangeListener<String> {
 	protected Button addItem;
 	protected ArrayList <TextField> textFieldArray;
 	public TextFieldEmptinessValidation(Button addItem, ArrayList <TextField> textFieldArray) {

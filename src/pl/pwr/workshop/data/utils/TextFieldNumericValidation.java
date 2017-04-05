@@ -1,4 +1,4 @@
-package pl.pwr.workshop.data.controller;
+package pl.pwr.workshop.data.utils;
 
 import java.util.ArrayList;
 

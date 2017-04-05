@@ -2,6 +2,8 @@ package pl.pwr.workshop.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -75,6 +77,7 @@ public class MainController implements Initializable {
 
 	private void configureButtons() {
 		addElement.setOnAction(x-> {
+			workshopList.refresh();
 			windowUtil.loadWindowAndSendData(Strings.addItemLayoutName, Strings.addElementName, data);
 		});
 	}
@@ -82,10 +85,10 @@ public class MainController implements Initializable {
 	private void configureChoiceBox() {
 		choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
 			if(newValue.intValue() == 0) {
-				workshopList.setItems(data.getPipeCableList());
+				Bindings.bindContent(workshopList.getItems(), data.getPipeCableList());
 			}
-			else {
-				workshopList.setItems(null);
+			else if(newValue.intValue() == 1) {
+				Bindings.bindContent(workshopList.getItems(), data.getElementList());
 			}
 		});
 	}

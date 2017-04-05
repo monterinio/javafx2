@@ -4,13 +4,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Pipe;
+import pl.pwr.workshop.data.PipeCable;
+import pl.pwr.workshop.data.StoredItem;
+import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
+import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
 public class AddPipeController implements Initializable, DataProvider {
 
@@ -34,13 +40,41 @@ public class AddPipeController implements Initializable, DataProvider {
 		cancel.setOnAction(x->((Stage) cancel.getScene().getWindow()).close());
 		addItem.setDisable(true);
 		addItem.setOnAction(x-> {
-			data.getPipeCableList().add(new Pipe(itemName.getText(), itemMaterial.getText(),
-												Integer.parseInt(itemDiameter.getText()),
-												Integer.parseInt(itemLength.getText())
-																		));
-			 ((Stage) addItem.getScene().getWindow()).close();
+			Pipe pipe = createPipe();
+			addItemWithCheckingForExistence(pipe, data.getPipeCableList());
+			((Stage) addItem.getScene().getWindow()).close();
 		});
 		textFieldValidator();
+	}
+
+	private Pipe createPipe() {
+		String pipeName = itemName.getText();
+		String pipeMaterial = itemMaterial.getText();
+		int pipeDiameter = Integer.parseInt(itemDiameter.getText());
+		int pipeLength = Integer.parseInt(itemLength.getText());
+
+		return new Pipe(pipeName, pipeMaterial, pipeDiameter, pipeLength);
+	}
+
+	private void refreshList(ObservableList<PipeCable> pipeCableList) {
+		pipeCableList.add(null);
+		pipeCableList.remove(null);
+	}
+
+	private void addItemWithCheckingForExistence(Pipe pipe, ObservableList<PipeCable> pipeCableList) {
+		boolean itemAdded = true;
+
+		for(int i=0;i<pipeCableList.size();i++) {
+			Pipe currentPipe = (Pipe) data.getPipeCableList().get(i);
+			if(currentPipe.equals(pipe)) {
+				currentPipe.addQuantity(pipe);
+				itemAdded = false;
+				refreshList(pipeCableList);
+			}
+		}
+		if(itemAdded) {
+			pipeCableList.add(pipe);
+		}
 	}
 
 	public void textFieldValidator() {

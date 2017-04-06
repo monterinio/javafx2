@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class Pipe extends PipeCable {
 	private SimpleStringProperty material;
 	private SimpleIntegerProperty diameter;
-	private String fullName;
+	private SimpleStringProperty fullName;
 
 	public String getMaterial() {
 		return material.get();
@@ -21,10 +21,10 @@ public class Pipe extends PipeCable {
 		this.diameter = new SimpleIntegerProperty(diameter);
 	}
 	public String getFullName() {
-		return fullName;
+		return fullName.get();
 	}
 	public void setFullName(String fullName) {
-		this.fullName = fullName;
+		this.fullName = new SimpleStringProperty(fullName);
 	}
 	public void addQuantity(Pipe pipe) {
 		this.quantity.set(this.getQuantity()+pipe.getQuantity());
@@ -33,7 +33,7 @@ public class Pipe extends PipeCable {
 		super(name, length);
 		this.material = new SimpleStringProperty(material);
 		this.diameter = new SimpleIntegerProperty(diameter);
-		this.setFullName(this.name.get() + " " + this.material.get() + " " + this.getDiameter());
+		this.setFullName(this.name.get() + ", mat." + this.material.get() + ", fi." + this.getDiameter());
 	}
 	@Override
 	public int hashCode() {
@@ -51,11 +51,13 @@ public class Pipe extends PipeCable {
 		if (getClass() != obj.getClass())
 			return false;
 		Pipe other = (Pipe) obj;
-		if (fullName == null) {
-			if (other.fullName != null)
+		if (fullName.get() == null) {
+			if (other.fullName.get() != null)
 				return false;
-		} else if (!fullName.equals(other.fullName))
+		} else if (!fullName.get().equals(other.fullName.get()))
 			return false;
 		return true;
 	}
+
+
 }

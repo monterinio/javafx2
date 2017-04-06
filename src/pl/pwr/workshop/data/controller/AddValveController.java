@@ -10,20 +10,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
-import pl.pwr.workshop.data.Pipe;
+import pl.pwr.workshop.data.Valve;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
-public class AddPipeController implements Initializable, DataProvider, AddPipeCableController {
+public class AddValveController implements Initializable, DataProvider, AddValveMotorController {
 
     @FXML
     private TextField itemName;
     @FXML
-    private TextField itemMaterial;
+    private TextField itemType;
     @FXML
-    private TextField itemDiameter;
+    private TextField itemSize;
     @FXML
-    private TextField itemLength;
+    private TextField itemQuantity;
     @FXML
     private Button cancel;
     @FXML
@@ -36,42 +36,43 @@ public class AddPipeController implements Initializable, DataProvider, AddPipeCa
 		cancel.setOnAction(x->((Stage) cancel.getScene().getWindow()).close());
 		addItem.setDisable(true);
 		addItem.setOnAction(x-> {
-			Pipe pipe = createPipe();
-			addItemAndCheckForExistence(pipe, data);
+			Valve valve = createValve();
+			addItemAndCheckForExistence(valve, data);
 			((Stage) addItem.getScene().getWindow()).close();
 		});
 		textFieldValidator();
 	}
 
-	private Pipe createPipe() {
-		String pipeName = itemName.getText();
-		String pipeMaterial = itemMaterial.getText();
-		int pipeDiameter = Integer.parseInt(itemDiameter.getText());
-		int pipeLength = Integer.parseInt(itemLength.getText());
+	private Valve createValve() {
+		String valveName = itemName.getText();
+		String valveType = itemType.getText();
+		int valveSize = Integer.parseInt(itemSize.getText());
+		int valveQuantity = Integer.parseInt(itemQuantity.getText());
 
-		return new Pipe(pipeName, pipeMaterial, pipeDiameter, pipeLength);
+		return new Valve(valveName, valveType, valveSize, valveQuantity);
 	}
 
 	public void textFieldValidator() {
 		initializeTextFieldList();
 		itemName.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
-		itemMaterial.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
-		itemDiameter.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemDiameter));
-		itemLength.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemLength));
+		itemType.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
+		itemSize.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemSize));
+		itemQuantity.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemQuantity));
 	}
 
 	private void initializeTextFieldList() {
 		textFieldArray = new ArrayList<>();
 		textFieldArray.add(itemName);
-		textFieldArray.add(itemMaterial);
-		textFieldArray.add(itemDiameter);
-		textFieldArray.add(itemLength);
+		textFieldArray.add(itemType);
+		textFieldArray.add(itemSize);
+		textFieldArray.add(itemQuantity);
 	}
 
 	@Override
 	public void getData(Data data) {
 		this.data = data;
 	}
+
 }
 
 

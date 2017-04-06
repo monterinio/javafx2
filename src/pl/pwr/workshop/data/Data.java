@@ -1,10 +1,8 @@
 package pl.pwr.workshop.data;
 
 import java.io.Serializable;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
 public class Data implements Serializable {
 	/**
@@ -20,6 +18,7 @@ public class Data implements Serializable {
 		this.elementList = FXCollections.observableArrayList();
 		this.valveMotorList = FXCollections.observableArrayList();
 	}
+
 
 	public ObservableList<PipeCable> getPipeCableList() {
 		return pipeCableList;

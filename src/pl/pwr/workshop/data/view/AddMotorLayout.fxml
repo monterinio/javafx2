@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.workshop.data.controller.AddScrewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.workshop.data.controller.AddMotorController">
    <top>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Dodaj śrubę:">
+            <Label text="Dodaj silnik:">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -41,27 +41,18 @@
                </font>
             </Label>
             <TextField fx:id="itemName" GridPane.columnIndex="1" />
-            <Label text="Typ:" GridPane.rowIndex="1">
+            <Label text="Moc:" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="itemType" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <VBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Rodzaj" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="gwintu: ">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <TextField fx:id="itemThreadType" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="itemPower" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Typ: " GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="itemType" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Ilość: " GridPane.rowIndex="3">
                <font>
                   <Font size="15.0" />

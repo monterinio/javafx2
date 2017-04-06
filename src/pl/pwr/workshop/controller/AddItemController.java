@@ -36,9 +36,10 @@ public class AddItemController implements Initializable, DataProvider {
 		choiceBox.setTooltip(new Tooltip("Wybierz kategorie"));
 		choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
 			next.setDisable(false);
+			int choosedOption = newValue.intValue();
 			next.setOnAction(x-> {
 			stage = (Stage) choiceBox.getScene().getWindow();
-			windowUtil.loadWindowAndSendData(Strings.addItemLayouts[newValue.intValue()], Strings.addItemNames[newValue.intValue()], data);
+			windowUtil.loadWindowAndSendData(Strings.addItemLayouts[choosedOption], Strings.addItemNames[choosedOption], data);
 			stage.close();
 		});
 	});

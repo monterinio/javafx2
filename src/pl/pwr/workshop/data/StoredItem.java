@@ -27,4 +27,8 @@ public abstract class StoredItem {
 		this.name = new SimpleStringProperty(name);
 		this.quantity = new SimpleIntegerProperty(quantity);
 	}
+
+	public void addQuantity(StoredItem storedItem) {
+		this.quantity.set(this.getQuantity()+storedItem.getQuantity());
+	}
 }

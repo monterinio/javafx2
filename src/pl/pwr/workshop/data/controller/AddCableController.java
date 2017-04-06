@@ -3,7 +3,6 @@ package pl.pwr.workshop.data.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,11 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Cable;
 import pl.pwr.workshop.data.Data;
-import pl.pwr.workshop.data.Pipe;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
-public class AddCableController implements Initializable, DataProvider {
+public class AddCableController implements Initializable, DataProvider, AddPipeCableController {
 
     @FXML
     private TextField itemName;
@@ -37,13 +35,20 @@ public class AddCableController implements Initializable, DataProvider {
 		cancel.setOnAction(x->((Stage) cancel.getScene().getWindow()).close());
 		addItem.setDisable(true);
 		addItem.setOnAction(x-> {
-			data.getPipeCableList().add(new Cable(itemName.getText(), Integer.parseInt(itemNoOfWires.getText()),
-												Double.parseDouble(itemCrossSection.getText()),
-												Integer.parseInt(itemLength.getText())
-																		));
-			 ((Stage) addItem.getScene().getWindow()).close();
+			Cable cable = createCable();
+			addItemAndCheckForExistence(cable, data);
+			((Stage) addItem.getScene().getWindow()).close();
 		});
 		textFieldValidator();
+	}
+
+	private Cable createCable() {
+		String cableName = itemName.getText();
+		int cableNoOfWires = Integer.parseInt(itemNoOfWires.getText());
+		double cableCrossSection = Double.parseDouble(itemCrossSection.getText());
+		int cableLength = Integer.parseInt(itemLength.getText());
+
+		return new Cable(cableName, cableNoOfWires, cableCrossSection, cableLength);
 	}
 
 	public void textFieldValidator() {

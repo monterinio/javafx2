@@ -12,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import pl.pwr.workshop.data.ConnectionData;
 import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.StoredItem;
@@ -33,6 +34,8 @@ public class MainController implements Initializable {
     @FXML
     private Button deleteOrderedItem;
     @FXML
+    private Button refresh;
+    @FXML
     private ChoiceBox<String> choiceBox;
 	@FXML
 	private MenuItem connectionSettingsItem;
@@ -49,10 +52,10 @@ public class MainController implements Initializable {
     private TableColumn<StoredItem, Integer> quantityColumn;
 
 	public MainController() {
+		data = new Data();
 		saveLoadUtil = new SaveLoadUtil();
 		windowUtil = new WindowUtil();
 		connectionData = saveLoadUtil.loadApplicationState();
-		data = new Data();
 	}
 
 	@Override
@@ -61,6 +64,7 @@ public class MainController implements Initializable {
 		configureMenuItems();
 		configureButtons();
 		configureChoiceBox();
+		refreshTable();
 		choiceBox.setItems(Strings.choiceBox);
 	}
 
@@ -76,9 +80,17 @@ public class MainController implements Initializable {
 	}
 
 	private void configureButtons() {
-		addElement.setOnAction(x-> {
-			workshopList.refresh();
+		addElement.addEventHandler(MouseEvent.MOUSE_CLICKED, x-> {
 			windowUtil.loadWindowAndSendData(Strings.addItemLayoutName, Strings.addElementName, data);
+		});
+		refresh.setOnAction(x-> {
+			workshopList.refresh();
+		});
+	}
+
+	private void refreshTable() {
+		workshopList.addEventHandler(MouseEvent.MOUSE_ENTERED, x-> {
+			workshopList.refresh();
 		});
 	}
 
@@ -89,6 +101,9 @@ public class MainController implements Initializable {
 			}
 			else if(newValue.intValue() == 1) {
 				Bindings.bindContent(workshopList.getItems(), data.getElementList());
+			}
+			else if(newValue.intValue() == 2) {
+				Bindings.bindContent(workshopList.getItems(), data.getValveMotorList());
 			}
 		});
 	}

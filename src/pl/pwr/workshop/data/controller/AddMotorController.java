@@ -1,12 +1,9 @@
 package pl.pwr.workshop.data.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
@@ -14,63 +11,53 @@ import pl.pwr.workshop.data.Motor;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
-public class AddMotorController implements Initializable, DataProvider, AddValveMotorController {
+public class AddMotorController extends AddValveMotorController implements Initializable, DataProvider {
 
-    @FXML
-    private TextField itemName;
-    @FXML
-    private TextField itemType;
     @FXML
     private TextField itemPower;
-    @FXML
-    private TextField itemQuantity;
-    @FXML
-    private Button cancel;
-    @FXML
-    private Button addItem;
-    private Data data;
-    private ArrayList<TextField> textFieldArray;
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		cancel.setOnAction(x->((Stage) cancel.getScene().getWindow()).close());
-		addItem.setDisable(true);
-		addItem.setOnAction(x-> {
-			Motor motor = createMotor();
-			addItemAndCheckForExistence(motor, data);
-			((Stage) addItem.getScene().getWindow()).close();
-		});
-		textFieldValidator();
-	}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initializeButtons();
+        textFieldValidator();
+    }
 
-	private Motor createMotor() {
-		String motorName = itemName.getText();
-		String motorType = itemType.getText();
-		double motorPower = Double.parseDouble(itemPower.getText());
-		int motorQuantity = Integer.parseInt(itemQuantity.getText());
+    @Override
+    protected void initializeButtons() {
+        super.initializeButtons();
+        addItem.setOnAction(x -> {
+            Motor motor = createMotor();
+            addItemAndCheckForExistence(motor, data);
+            ((Stage) addItem.getScene().getWindow()).close();
+        });
+    }
 
-		return new Motor(motorName, motorType, motorPower, motorQuantity);
-	}
+    private Motor createMotor() {
+        String motorName = itemName.getText();
+        String motorType = itemType.getText();
+        double motorPower = Double.parseDouble(itemPower.getText());
+        int motorQuantity = Integer.parseInt(itemQuantity.getText());
 
-	public void textFieldValidator() {
-		initializeTextFieldList();
-		itemName.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
-		itemType.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
-		itemPower.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemPower));
-		itemQuantity.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemQuantity));
-	}
+        return new Motor(motorName, motorType, motorPower, motorQuantity);
+    }
 
-	private void initializeTextFieldList() {
-		textFieldArray = new ArrayList<>();
-		textFieldArray.add(itemName);
-		textFieldArray.add(itemType);
-		textFieldArray.add(itemPower);
-		textFieldArray.add(itemQuantity);
-	}
+    public void textFieldValidator() {
+        initializeTextFieldList();
+        itemName.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
+        itemType.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
+        itemPower.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemPower));
+        itemQuantity.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemQuantity));
+    }
 
-	@Override
-	public void getData(Data data) {
-		this.data = data;
-	}
+    @Override
+    protected void initializeTextFieldList() {
+        super.initializeTextFieldList();
+        textFieldArray.add(itemPower);
+    }
+
+    @Override
+    public void getData(Data data) {
+        this.data = data;
+    }
 
 }

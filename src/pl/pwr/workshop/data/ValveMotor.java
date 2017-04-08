@@ -1,8 +1,21 @@
 package pl.pwr.workshop.data;
 
-public class ValveMotor extends StoredItem {
+import javafx.beans.property.SimpleStringProperty;
 
-	public ValveMotor(String name, int quantity) {
-		super(name, quantity);
-	}
+public class ValveMotor extends StoredItem {
+    protected SimpleStringProperty type;
+
+    public String getType() {
+        return type.get();
+    }
+
+    public void setType(String type) {
+        this.type = new SimpleStringProperty(type);
+    }
+
+    public ValveMotor(String name, String type, int quantity) {
+        super(name, quantity);
+        this.type = new SimpleStringProperty(type);
+    }
+
 }

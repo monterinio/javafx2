@@ -16,9 +16,9 @@ import pl.pwr.workshop.utils.WindowUtil;
 
 public class AddItemController implements Initializable, DataProvider {
 
-	private Stage stage;
-	private WindowUtil windowUtil;
-	private Data data;
+    private Stage stage;
+    private WindowUtil windowUtil;
+    private Data data;
 
     @FXML
     private ChoiceBox<String> choiceBox;
@@ -26,27 +26,28 @@ public class AddItemController implements Initializable, DataProvider {
     private Button next;
 
     public AddItemController() {
-    	windowUtil = new WindowUtil();
+        windowUtil = new WindowUtil();
     }
 
     @Override
-	public void initialize(URL location, ResourceBundle resources) {
-    	choiceBox.setItems(Strings.addItemBox);
-    	next.setDisable(true);
-		choiceBox.setTooltip(new Tooltip("Wybierz kategorie"));
-		choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
-			next.setDisable(false);
-			int choosedOption = newValue.intValue();
-			next.setOnAction(x-> {
-			stage = (Stage) choiceBox.getScene().getWindow();
-			windowUtil.loadWindowAndSendData(Strings.addItemLayouts[choosedOption], Strings.addItemNames[choosedOption], data);
-			stage.close();
-		});
-	});
-  }
+    public void initialize(URL location, ResourceBundle resources) {
+        choiceBox.setItems(Strings.addItemBox);
+        next.setDisable(true);
+        choiceBox.setTooltip(new Tooltip("Wybierz kategorie"));
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
+            next.setDisable(false);
+            int choosedOption = newValue.intValue();
+            next.setOnAction(x -> {
+                stage = (Stage) choiceBox.getScene().getWindow();
+                windowUtil.loadWindowAndSendData(Strings.addItemLayouts[choosedOption],
+                        Strings.addItemNames[choosedOption], data);
+                stage.close();
+            });
+        });
+    }
 
-	@Override
-	public void getData(Data data) {
-		this.data = data;
-	}
+    @Override
+    public void getData(Data data) {
+        this.data = data;
+    }
 }

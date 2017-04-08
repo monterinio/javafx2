@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Cable;
 import pl.pwr.workshop.data.Data;
+import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
@@ -17,6 +18,10 @@ public class AddCableController extends AddPipeCableController implements Initia
     private TextField itemNoOfWires;
     @FXML
     private TextField itemCrossSection;
+
+    public AddCableController() {
+        super();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,6 +35,7 @@ public class AddCableController extends AddPipeCableController implements Initia
         addItem.setOnAction(x -> {
             Cable cable = createCable();
             addItemAndCheckForExistence(cable, data);
+            saveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

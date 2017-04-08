@@ -1,51 +1,51 @@
 package pl.pwr.workshop.data;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import java.io.Serializable;
 
-public abstract class StoredItem {
-    protected SimpleStringProperty name;
-    protected SimpleIntegerProperty quantity;
-    protected SimpleStringProperty fullName;
+public abstract class StoredItem implements Serializable {
+    private static final long serialVersionUID = 2828267035950011607L;
+    protected String name;
+    protected int quantity;
+    protected String fullName;
 
     public String getFullName() {
-        return fullName.get();
+        return fullName;
     }
 
     public void setFullName(String fullName) {
-        this.fullName = new SimpleStringProperty(fullName);
+        this.fullName = fullName;
     }
 
     public String getName() {
-        return name.get();
+        return name;
     }
 
     public void setName(String name) {
-        this.name = new SimpleStringProperty(name);
+        this.name = name;
     }
 
     public int getQuantity() {
-        return quantity.get();
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = new SimpleIntegerProperty(quantity);
+        this.quantity = quantity;
     }
 
     public StoredItem(String name, int quantity) {
-        this.name = new SimpleStringProperty(name);
-        this.quantity = new SimpleIntegerProperty(quantity);
+        this.name = name;
+        this.quantity = quantity;
     }
 
     public void addQuantity(StoredItem storedItem) {
-        this.quantity.set(this.getQuantity() + storedItem.getQuantity());
+        this.quantity = (this.getQuantity() + storedItem.getQuantity());
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((fullName.get() == null) ? 0 : fullName.get().hashCode());
+        result = prime * result + ((fullName == null) ? 0 : fullName.hashCode());
         return result;
     }
 
@@ -58,12 +58,14 @@ public abstract class StoredItem {
         if (getClass() != obj.getClass())
             return false;
         StoredItem other = (StoredItem) obj;
-        if (fullName.get() == null) {
-            if (other.fullName.get() != null)
+        if (fullName == null) {
+            if (other.fullName != null)
                 return false;
-        } else if (!fullName.get().equals(other.fullName.get()))
+        } else if (!fullName.equals(other.fullName))
             return false;
         return true;
     }
+
+
 
 }

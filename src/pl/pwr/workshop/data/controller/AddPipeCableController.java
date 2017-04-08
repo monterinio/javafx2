@@ -15,6 +15,10 @@ public abstract class AddPipeCableController extends AddStoredItemController {
     @FXML
     protected TextField itemLength;
 
+    protected AddPipeCableController() {
+        super();
+    }
+
     public void addItemAndCheckForExistence(PipeCable pipeCable, Data data) {
         boolean itemAdded = true;
         ObservableList<PipeCable> pipeCableList = data.getPipeCableList();

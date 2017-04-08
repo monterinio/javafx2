@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Pipe;
+import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
@@ -17,6 +18,10 @@ public class AddPipeController extends AddPipeCableController implements Initial
     private TextField itemMaterial;
     @FXML
     private TextField itemDiameter;
+
+    public AddPipeController() {
+        super();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,6 +35,7 @@ public class AddPipeController extends AddPipeCableController implements Initial
         addItem.setOnAction(x -> {
             Pipe pipe = createPipe();
             addItemAndCheckForExistence(pipe, data);
+            saveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
+import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.Valve;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
@@ -15,6 +16,10 @@ public class AddValveController extends AddValveMotorController implements Initi
 
     @FXML
     private TextField itemSize;
+
+    public AddValveController() {
+        super();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,6 +33,7 @@ public class AddValveController extends AddValveMotorController implements Initi
         addItem.setOnAction(x -> {
             Valve valve = createValve();
             addItemAndCheckForExistence(valve, data);
+            saveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

@@ -17,6 +17,10 @@ public abstract class AddValveMotorController extends AddStoredItemController {
     @FXML
     protected TextField itemQuantity;
 
+    protected AddValveMotorController() {
+        super();
+    }
+
     public void addItemAndCheckForExistence(ValveMotor valveMotor, Data data) {
         boolean itemAdded = true;
         ObservableList<ValveMotor> valveMotorList = data.getValveMotorList();

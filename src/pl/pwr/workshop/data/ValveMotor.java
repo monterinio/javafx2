@@ -1,21 +1,23 @@
 package pl.pwr.workshop.data;
 
-import javafx.beans.property.SimpleStringProperty;
-
 public class ValveMotor extends StoredItem {
-    protected SimpleStringProperty type;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5134199479882998510L;
+    protected String type;
 
     public String getType() {
-        return type.get();
+        return type;
     }
 
     public void setType(String type) {
-        this.type = new SimpleStringProperty(type);
+        this.type = type;
     }
 
     public ValveMotor(String name, String type, int quantity) {
         super(name, quantity);
-        this.type = new SimpleStringProperty(type);
+        this.type = type;
     }
 
 }

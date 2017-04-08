@@ -17,7 +17,10 @@ public class Strings {
 	public final static String processingItemName = "Nawi¹zywanie pol¹czenia";
 	public final static String IPErrorItemName = "Blad!";
 	public final static String appName = "Industrial Control v0.1";
-	public final static String fileName = "connectionData.obj";
+	public final static String connectionFileName = "connectionData.obj";
+	public final static String dataPipeCableFileName = "dataPipeCable.obj";
+	public final static String dataElementFileName = "dataElement.obj";
+	public final static String dataValveMotorFileName = "dataValveMotor.obj";
 	public final static String addElementName = "Dodaj przedmiot";
 	public final static ObservableList<String> choiceBox = FXCollections.observableArrayList("Rury i kable", "Elementy", "Zawory i silniki");
 	public final static ObservableList<String> addItemBox = FXCollections.observableArrayList("Rury", "Kable", "Elementy", "Zawory", "Silniki");

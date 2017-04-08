@@ -1,0 +1,204 @@
+Found a 11 line (52 tokens) duplication in the following files: 
+Starting at line 22 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 57 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+
+			Parent parent = (Parent) FXMLLoader.load(getClass().getResource(path));
+			Scene scene = new Scene(parent);
+			subWindow.setScene(scene);
+			subWindow.setTitle(appName);
+			subWindow.show();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void loadWindowAndSendData(String path, String appName, ConnectionData connectionData) {
+=====================================================================
+Found a 11 line (50 tokens) duplication in the following files: 
+Starting at line 22 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 39 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 57 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+
+			Parent parent = (Parent) FXMLLoader.load(getClass().getResource(path));
+			Scene scene = new Scene(parent);
+			subWindow.setScene(scene);
+			subWindow.setTitle(appName);
+			subWindow.show();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void loadWindowAndSendData(String path, String appName, ConnectionData connectionData) {
+=====================================================================
+Found a 6 line (46 tokens) duplication in the following files: 
+Starting at line 32 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 67 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+
+	public void loadWindowAndSendData(String path, String appName, ConnectionData connectionData) {
+		try {
+			Stage subWindow = new Stage();
+			subWindow.initModality(Modality.APPLICATION_MODAL);
+			FXMLLoader loader = new FXMLLoader();
+			Parent parent = loader.load(getClass().getResource(path).openStream());
+=====================================================================
+Found a 7 line (43 tokens) duplication in the following files: 
+Starting at line 41 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddMotorController.java
+Starting at line 41 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddValveController.java
+
+        return new Motor(motorName, motorType, motorPower, motorQuantity);
+    }
+
+    public void textFieldValidator() {
+        initializeTextFieldList();
+        itemName.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
+        itemType.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
+=====================================================================
+Found a 10 line (40 tokens) duplication in the following files: 
+Starting at line 21 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddCableController.java
+Starting at line 19 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddMotorController.java
+Starting at line 21 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddPipeController.java
+Starting at line 19 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddValveController.java
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initializeButtons();
+        textFieldValidator();
+    }
+
+    @Override
+    protected void initializeButtons() {
+        super.initializeButtons();
+        addItem.setOnAction(x -> {
+=====================================================================
+Found a 8 line (38 tokens) duplication in the following files: 
+Starting at line 52 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddCableController.java
+Starting at line 50 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddPipeController.java
+
+                .addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemCrossSection));
+        itemLength.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemLength));
+    }
+
+    @Override
+    protected void initializeTextFieldList() {
+        super.initializeTextFieldList();
+        textFieldArray.add(itemNoOfWires);
+=====================================================================
+Found a 8 line (38 tokens) duplication in the following files: 
+Starting at line 48 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddMotorController.java
+Starting at line 48 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddValveController.java
+
+        itemPower.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemPower));
+        itemQuantity.textProperty().addListener(new TextFieldNumericValidation(addItem, textFieldArray, itemQuantity));
+    }
+
+    @Override
+    protected void initializeTextFieldList() {
+        super.initializeTextFieldList();
+        textFieldArray.add(itemPower);
+=====================================================================
+Found a 4 line (36 tokens) duplication in the following files: 
+Starting at line 34 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 52 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 69 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+
+			Stage subWindow = new Stage();
+			subWindow.initModality(Modality.APPLICATION_MODAL);
+			FXMLLoader loader = new FXMLLoader();
+			Parent parent = loader.load(getClass().getResource(path).openStream());
+=====================================================================
+Found a 9 line (32 tokens) duplication in the following files: 
+Starting at line 17 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\Element.java
+Starting at line 8 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\ValveMotor.java
+
+    public String getType() {
+        return type.get();
+    }
+
+    public void setType(String type) {
+        this.type = new SimpleStringProperty(type);
+    }
+
+    public Element(String name, String type, String threadType, int quantity) {
+=====================================================================
+Found a 8 line (32 tokens) duplication in the following files: 
+Starting at line 23 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 40 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 58 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 76 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+
+			Scene scene = new Scene(parent);
+			subWindow.setScene(scene);
+			subWindow.setTitle(appName);
+			subWindow.show();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+=====================================================================
+Found a 6 line (27 tokens) duplication in the following files: 
+Starting at line 43 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddCableController.java
+Starting at line 41 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddMotorController.java
+Starting at line 43 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddPipeController.java
+Starting at line 41 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddValveController.java
+
+        return new Cable(cableName, cableNoOfWires, cableCrossSection, cableLength);
+    }
+
+    public void textFieldValidator() {
+        initializeTextFieldList();
+        itemName.textProperty().addListener(new TextFieldEmptinessValidation(addItem, textFieldArray));
+=====================================================================
+Found a 8 line (27 tokens) duplication in the following files: 
+Starting at line 29 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddPipeCableController.java
+Starting at line 31 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddValveMotorController.java
+
+            pipeCableList.add(pipeCable);
+        }
+    }
+
+    protected void initializeTextFieldList() {
+        textFieldArray = new ArrayList<>();
+        textFieldArray.add(itemName);
+        textFieldArray.add(itemLength);
+=====================================================================
+Found a 5 line (26 tokens) duplication in the following files: 
+Starting at line 5 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\Nut.java
+Starting at line 5 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\Screw.java
+Starting at line 5 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\Washer.java
+
+    public Nut(String name, String type, String threadType, int quantity) {
+        super(name, type, threadType, quantity);
+    }
+
+}
+=====================================================================
+Found a 1 line (25 tokens) duplication in the following files: 
+Starting at line 54 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\controller\ConnectionController.java
+Starting at line 20 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddStoredItemController.java
+
+		cancel.setOnAction(x-> ((Stage) cancel.getScene().getWindow()).close());
+=====================================================================
+Found a 6 line (25 tokens) duplication in the following files: 
+Starting at line 32 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddCableController.java
+Starting at line 51 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddElementController.java
+Starting at line 30 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddMotorController.java
+Starting at line 32 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddPipeController.java
+Starting at line 30 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\data\controller\AddValveController.java
+
+            addItemAndCheckForExistence(cable, data);
+            ((Stage) addItem.getScene().getWindow()).close();
+        });
+    }
+
+    private Cable createCable() {
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 17 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+Starting at line 49 of C:\Users\miki\workspace\WorkshopManagement\src\pl\pwr\workshop\utils\WindowUtil.java
+
+	public void loadWindow(String path, String appName) {
+		try {
+			Stage subWindow = new Stage();
+			subWindow.setResizable(false);
+			subWindow.initModality(Modality.APPLICATION_MODAL);

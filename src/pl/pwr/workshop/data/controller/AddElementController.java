@@ -15,6 +15,7 @@ import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Element;
 import pl.pwr.workshop.data.Nut;
 import pl.pwr.workshop.data.Screw;
+import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.Washer;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
@@ -29,6 +30,10 @@ public class AddElementController extends AddStoredItemController implements Ini
     private TextField itemThreadType;
     @FXML
     private TextField itemQuantity;
+
+    public AddElementController() {
+        super();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +54,7 @@ public class AddElementController extends AddStoredItemController implements Ini
         addItem.setOnAction(x -> {
             Element element = createElement();
             addItemAndCheckForExistence(element, data);
+            saveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

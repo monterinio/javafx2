@@ -1,33 +1,31 @@
 package pl.pwr.workshop.data;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public class Cable extends PipeCable {
-    private SimpleIntegerProperty noOfWires;
-    private SimpleDoubleProperty crossSection;
+    private static final long serialVersionUID = 3219765238868102029L;
+    private int noOfWires;
+    private double crossSection;
 
     public int getNoOfWires() {
-        return noOfWires.get();
+        return noOfWires;
     }
 
     public void setNoOfWires(int noOfWires) {
-        this.noOfWires = new SimpleIntegerProperty(noOfWires);
+        this.noOfWires = noOfWires;
     }
 
     public double getCrossSection() {
-        return crossSection.get();
+        return crossSection;
     }
 
     public void setCrossSection(double crossSection) {
-        this.crossSection = new SimpleDoubleProperty(crossSection);
+        this.crossSection = crossSection;
     }
 
     public Cable(String name, int noOfWires, double crossSection, int quantity) {
         super(name, quantity);
-        this.noOfWires = new SimpleIntegerProperty(noOfWires);
-        this.crossSection = new SimpleDoubleProperty(crossSection);
-        this.setFullName(this.name.get() + " " + this.noOfWires.get() + "x" + this.crossSection.get() + "mm2");
+        this.noOfWires = noOfWires;
+        this.crossSection = crossSection;
+        this.setFullName(this.name + " " + this.noOfWires + "x" + this.crossSection + "mm2");
     }
 
 }

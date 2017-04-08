@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Motor;
+import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
 
@@ -15,6 +16,10 @@ public class AddMotorController extends AddValveMotorController implements Initi
 
     @FXML
     private TextField itemPower;
+
+    public AddMotorController() {
+        super();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -28,6 +33,7 @@ public class AddMotorController extends AddValveMotorController implements Initi
         addItem.setOnAction(x -> {
             Motor motor = createMotor();
             addItemAndCheckForExistence(motor, data);
+            saveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

@@ -15,7 +15,6 @@ import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Element;
 import pl.pwr.workshop.data.Nut;
 import pl.pwr.workshop.data.Screw;
-import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.Washer;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;

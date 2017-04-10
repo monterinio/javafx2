@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<VBox id="background-1" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" stylesheets="@subStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.workshop.controller.AddItemController">
+<VBox id="background-1" alignment="CENTER" prefHeight="100.0" prefWidth="250.0" stylesheets="/pl/pwr/workshop/view/subStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.workshop.controller.AddItemController">
    <children>
       <Label text="Wybierz kategorię" VBox.vgrow="ALWAYS">
          <VBox.margin>

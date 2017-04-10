@@ -1,7 +1,5 @@
 package pl.pwr.workshop.data;
 
-import javafx.scene.control.TableRow;
-
 public class OrderedStoredItemsParameters {
     private int orderedItemQuantity;
     private int storedItemQuantity;

@@ -59,10 +59,10 @@ public class SaveLoadUtil {
     }
 
     public Data loadApplicationState(Data data) {
-       data.setPipeCableList(loadPipeCableList(data));
-       data.setElementList(loadElementList(data));
-       data.setValveMotorList(loadValveMotorList(data));
-       return data;
+        data.setPipeCableList(loadPipeCableList(data));
+        data.setElementList(loadElementList(data));
+        data.setValveMotorList(loadValveMotorList(data));
+        return data;
     }
 
     private ObservableList<PipeCable> loadPipeCableList(Data data) {

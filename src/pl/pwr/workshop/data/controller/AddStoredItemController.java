@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.Data;
-import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.utils.SaveLoadUtil;
 
 public abstract class AddStoredItemController {

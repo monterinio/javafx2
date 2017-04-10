@@ -14,7 +14,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefWidth="80.0" text="OK" VBox.vgrow="ALWAYS">
+      <Button fx:id="cancel" alignment="BOTTOM_CENTER" mnemonicParsing="false" prefWidth="80.0" text="OK" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>

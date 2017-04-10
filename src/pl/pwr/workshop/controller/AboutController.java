@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
-public class AboutController extends OkButtonController {
+public class AboutController extends CancelButtonController {
 
     @FXML
     private TextArea tArea;

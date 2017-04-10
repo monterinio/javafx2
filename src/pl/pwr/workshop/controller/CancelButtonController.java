@@ -7,12 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public abstract class OkButtonController implements Initializable {
+public abstract class CancelButtonController implements Initializable {
     @FXML
-    protected Button okButton;
+    protected Button cancel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        okButton.setOnAction(x -> ((Stage) okButton.getScene().getWindow()).close());
+        cancel.setOnAction(x -> ((Stage) cancel.getScene().getWindow()).close());
     }
 }

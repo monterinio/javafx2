@@ -48,7 +48,7 @@ public class ConnectionController implements Initializable, ConnectionDataProvid
                 ((Stage) saveAndExit.getScene().getWindow()).close();
             } else {
                 windowUtil = new WindowUtil();
-                windowUtil.loadWindow(Strings.IPErrorLayoutName, Strings.IPErrorItemName);
+                windowUtil.loadWindow(Strings.IPErrorLayoutName, Strings.errorItemName);
             }
         });
         cancel.setOnAction(x -> ((Stage) cancel.getScene().getWindow()).close());

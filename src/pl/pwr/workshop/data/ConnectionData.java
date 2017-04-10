@@ -2,7 +2,7 @@ package pl.pwr.workshop.data;
 
 import java.io.Serializable;
 
-public class ConnectionData extends ApplicationData implements Serializable {
+public class ConnectionData implements Serializable {
     /**
      *
      */

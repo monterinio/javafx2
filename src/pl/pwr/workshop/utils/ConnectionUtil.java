@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import pl.pwr.workshop.data.ConnectionData;
 import pl.pwr.workshop.data.Data;
+import pl.pwr.workshop.data.OrderedItemsData;
 import pl.pwr.workshop.data.Strings;
 
 public class ConnectionUtil {
@@ -14,12 +15,13 @@ public class ConnectionUtil {
 	private OutputStream outputStream;
 	private ObjectOutputStream objectOutputStream;
 
-	public void run(ConnectionData connectionData, Data data) {
+	public void run(ConnectionData connectionData, Data data, OrderedItemsData orderedItemsData) {
 		try {
 			socket = new Socket(connectionData.getServerIP(),Strings.portNumber);
 			outputStream = socket.getOutputStream();
 			objectOutputStream = new ObjectOutputStream(outputStream);
 			objectOutputStream.writeObject(data);
+			objectOutputStream.writeObject(orderedItemsData);
 			closeConnection();
 		} catch(Exception e) {
 			e.printStackTrace();

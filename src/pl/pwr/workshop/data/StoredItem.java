@@ -2,7 +2,7 @@ package pl.pwr.workshop.data;
 
 import java.io.Serializable;
 
-public abstract class StoredItem implements Serializable {
+public class StoredItem implements Serializable {
     private static final long serialVersionUID = 2828267035950011607L;
     protected String name;
     protected int quantity;
@@ -35,6 +35,11 @@ public abstract class StoredItem implements Serializable {
     public StoredItem(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
+    }
+
+    public StoredItem(StoredItem storedItem) {
+        this.fullName = storedItem.fullName;
+        this.quantity = storedItem.quantity;
     }
 
     public void addQuantity(StoredItem storedItem) {

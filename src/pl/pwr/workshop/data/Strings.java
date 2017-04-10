@@ -11,17 +11,20 @@ public class Strings {
 	public final static String processingLayoutName = "/pl/pwr/workshop/view/ProcessingLayout.fxml";
 	public final static String IPErrorLayoutName = "/pl/pwr/workshop/view/IPErrorLayout.fxml";
 	public final static String addItemLayoutName = "/pl/pwr/workshop/view/AddItemLayout.fxml";
+	public final static String specifyQuantityLayoutName = "/pl/pwr/workshop/view/SpecifyQuantityLayout.fxml";
+	public final static String notEnoughItemsLayoutName = "/pl/pwr/workshop/view/NotEnoughItemsLayout.fxml";
 	public final static String exitItemName = "Wyjœcie";
 	public final static String aboutItemName = "O programie";
 	public final static String connectionSettingsItemName = "Opcje pol¹czenia";
 	public final static String processingItemName = "Nawi¹zywanie pol¹czenia";
-	public final static String IPErrorItemName = "Blad!";
+	public final static String errorItemName = "Blad!";
 	public final static String appName = "Industrial Control v0.1";
 	public final static String connectionFileName = "connectionData.obj";
 	public final static String dataPipeCableFileName = "dataPipeCable.obj";
 	public final static String dataElementFileName = "dataElement.obj";
 	public final static String dataValveMotorFileName = "dataValveMotor.obj";
 	public final static String addElementName = "Dodaj przedmiot";
+	public final static String specifyQuantityName = "Okresl ilosc";
 	public final static ObservableList<String> choiceBox = FXCollections.observableArrayList("Rury i kable", "Elementy", "Zawory i silniki");
 	public final static ObservableList<String> addItemBox = FXCollections.observableArrayList("Rury", "Kable", "Elementy", "Zawory", "Silniki");
 

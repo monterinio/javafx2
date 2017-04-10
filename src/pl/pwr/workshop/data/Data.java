@@ -3,11 +3,12 @@ package pl.pwr.workshop.data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Data extends ApplicationData  {
+public class Data {
 
     private ObservableList<PipeCable> pipeCableList;
     private ObservableList<Element> elementList;
     private ObservableList<ValveMotor> valveMotorList;
+    private ObservableList<StoredItem> storedItemsList;
 
     public Data() {
         this.setPipeCableList(FXCollections.observableArrayList());
@@ -37,6 +38,21 @@ public class Data extends ApplicationData  {
 
     public void setValveMotorList(ObservableList<ValveMotor> valveMotorList) {
         this.valveMotorList = valveMotorList;
+    }
+
+    public ObservableList<StoredItem> getStoredItemsList() {
+        return storedItemsList;
+    }
+
+    public void setStoredItemsList(ObservableList<StoredItem> storedItemsList) {
+        this.storedItemsList = storedItemsList;
+    }
+
+    public void fillStoredItemsList() {
+        this.setStoredItemsList(FXCollections.observableArrayList());
+        storedItemsList.addAll(pipeCableList);
+        storedItemsList.addAll(elementList);
+        storedItemsList.addAll(valveMotorList);
     }
 
 }

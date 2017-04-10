@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import pl.pwr.workshop.data.ConnectionData;
 import pl.pwr.workshop.data.Data;
+import pl.pwr.workshop.data.OrderedItemsData;
 import pl.pwr.workshop.utils.ConnectionUtil;
 
 public class ProcessingController implements Initializable {
@@ -16,6 +17,7 @@ public class ProcessingController implements Initializable {
 	private ConnectionData connectionData;
 	private Data data;
 	private ConnectionUtil connectionUtil;
+	private OrderedItemsData orderedItemsData;
 
     @FXML
     private Button exitButton;
@@ -29,13 +31,14 @@ public class ProcessingController implements Initializable {
 		});
 	}
 
-	public void getData(ConnectionData connectionData, Data data) {
+	public void getData(ConnectionData connectionData, Data data, OrderedItemsData orderedItemsData) {
 		this.connectionData = connectionData;
 		this.data = data;
+		this.orderedItemsData = orderedItemsData;
 	}
 
 	public void startConnection() {
-		connectionUtil.run(connectionData, data);
+		connectionUtil.run(connectionData, data, orderedItemsData);
 	}
 
 }

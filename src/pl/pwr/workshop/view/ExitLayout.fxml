@@ -10,8 +10,8 @@
       <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Czy na pewno chcesz wyjść?" VBox.vgrow="ALWAYS" />
       <HBox>
          <children>
+            <Button fx:id="cancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Anuluj" HBox.hgrow="ALWAYS" />
             <Button fx:id="yesButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Tak" HBox.hgrow="ALWAYS" />
-            <Button fx:id="noButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Nie" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

@@ -24,8 +24,12 @@ import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.data.ValveMotor;
 
 public class SaveLoadUtil {
-    public void saveApplicationState(ConnectionData connectionData) {
-        try (FileOutputStream fs = new FileOutputStream(Strings.connectionFileName);
+
+    private SaveLoadUtil() {
+    }
+
+    public static void saveApplicationState(ConnectionData connectionData) {
+        try (FileOutputStream fs = new FileOutputStream(Strings.CONNECTION_FILE_NAME);
                 ObjectOutputStream os = new ObjectOutputStream(fs);) {
             os.writeObject(connectionData);
         } catch (FileNotFoundException e) {
@@ -35,16 +39,10 @@ public class SaveLoadUtil {
         }
     }
 
-    public void saveApplicationState(Data data) {
-        savePipeCableList(data);
-        saveElementList(data);
-        saveValveMotorList(data);
-    }
-
-    public ConnectionData loadApplicationState() {
+    public static ConnectionData loadApplicationState() {
         ConnectionData connectionData = null;
 
-        try (FileInputStream fis = new FileInputStream(Strings.connectionFileName);
+        try (FileInputStream fis = new FileInputStream(Strings.CONNECTION_FILE_NAME);
                 ObjectInputStream ois = new ObjectInputStream(fis);) {
             connectionData = (ConnectionData) ois.readObject();
         } catch (FileNotFoundException e) {
@@ -58,20 +56,29 @@ public class SaveLoadUtil {
         return connectionData;
     }
 
-    public Data loadApplicationState(Data data) {
-        data.setPipeCableList(loadPipeCableList(data));
-        data.setElementList(loadElementList(data));
-        data.setValveMotorList(loadValveMotorList(data));
+    public static Data loadApplicationState(Data data) {
+        loadPipeCableList(data);
+        loadElementList(data);
+        loadValveMotorList(data);
         return data;
     }
 
-    private ObservableList<PipeCable> loadPipeCableList(Data data) {
-        try {
-            Path path = Paths.get(Strings.dataPipeCableFileName);
-            InputStream in = Files.newInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(in);
-            List<PipeCable> list = (List<PipeCable>) ois.readObject();
 
+    private static void loadPipeCableList(Data data) {
+        data.setPipeCableList(loadGeneric(new PipeCable(), Paths.get(Strings.DATA_PIPECABLE_FILE_NAME)));
+    }
+
+    private static void loadElementList(Data data) {
+        data.setElementList(loadGeneric(new Element(), Paths.get(Strings.DATA_ELEMENT_FILE_NAME)));
+    }
+
+    private static void loadValveMotorList(Data data) {
+        data.setValveMotorList(loadGeneric(new ValveMotor(), Paths.get(Strings.DATA_VALVEMOTOR_FILE_NAME)));
+    }
+
+    private static <T> ObservableList<T> loadGeneric(T t, Path path) {
+        try (InputStream in = Files.newInputStream(path); ObjectInputStream ois = new ObjectInputStream(in);) {
+            List<T> list = (List<T>) ois.readObject();
             return FXCollections.observableList(list);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -81,73 +88,27 @@ public class SaveLoadUtil {
         return FXCollections.observableArrayList();
     }
 
-    private ObservableList<Element> loadElementList(Data data) {
-        try {
-            Path path = Paths.get(Strings.dataElementFileName);
-            InputStream in = Files.newInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(in);
-            List<Element> list = (List<Element>) ois.readObject();
-
-            return FXCollections.observableList(list);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return FXCollections.observableArrayList();
+    public static void saveApplicationState(Data data) {
+        savePipeCableList(data);
+        saveElementList(data);
+        saveValveMotorList(data);
     }
 
-    private ObservableList<ValveMotor> loadValveMotorList(Data data) {
-        try {
-            Path path = Paths.get(Strings.dataValveMotorFileName);
-            InputStream in = Files.newInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(in);
-            List<ValveMotor> list = (List<ValveMotor>) ois.readObject();
-
-            return FXCollections.observableList(list);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return FXCollections.observableArrayList();
+    private static void savePipeCableList(Data data) {
+        saveGeneric(new ArrayList<PipeCable>(data.getPipeCableList()), Paths.get(Strings.DATA_PIPECABLE_FILE_NAME));
     }
 
-    private void savePipeCableList(Data data) {
-        try {
-            Path path = Paths.get(Strings.dataPipeCableFileName);
-            OutputStream fos = Files.newOutputStream(path);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new ArrayList<PipeCable>(data.getPipeCableList()));
-            oos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static void saveElementList(Data data) {
+        saveGeneric(new ArrayList<Element>(data.getElementList()), Paths.get(Strings.DATA_ELEMENT_FILE_NAME));
     }
 
-    private void saveElementList(Data data) {
-        try {
-            Path path = Paths.get(Strings.dataElementFileName);
-            OutputStream fos = Files.newOutputStream(path);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new ArrayList<Element>(data.getElementList()));
-            oos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static void saveValveMotorList(Data data) {
+        saveGeneric(new ArrayList<ValveMotor>(data.getValveMotorList()), Paths.get(Strings.DATA_VALVEMOTOR_FILE_NAME));
     }
 
-    private void saveValveMotorList(Data data) {
-        try {
-            Path path = Paths.get(Strings.dataValveMotorFileName);
-            OutputStream fos = Files.newOutputStream(path);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(new ArrayList<ValveMotor>(data.getValveMotorList()));
-            oos.close();
+    private static <T> void saveGeneric(ArrayList<T> data, Path path) {
+        try (OutputStream fos = Files.newOutputStream(path); ObjectOutputStream oos = new ObjectOutputStream(fos);) {
+            oos.writeObject(data);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

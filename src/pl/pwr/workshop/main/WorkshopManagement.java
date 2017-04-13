@@ -9,25 +9,23 @@ import pl.pwr.workshop.data.Strings;
 import pl.pwr.workshop.utils.WindowUtil;
 
 public class WorkshopManagement extends Application {
-	private WindowUtil windowUtil;
 
-	public static void main(String [] args) {
-		launch(args);
-	}
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		windowUtil = new WindowUtil();
-		Parent parent = FXMLLoader.load(getClass().getResource(Strings.mainLayoutName));
-		Scene scene = new Scene(parent);
-		primaryStage.setScene(scene);
-		primaryStage.setTitle(Strings.appName);
-		primaryStage.setResizable(false);
-		primaryStage.show();
-		primaryStage.setOnCloseRequest(x->{
-			x.consume();
-			windowUtil.loadWindow(Strings.exitLayoutName, Strings.exitItemName);
-		});
-	}
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent parent = FXMLLoader.load(getClass().getResource(Strings.MAIN_LAYOUT_NAME));
+        Scene scene = new Scene(parent);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle(Strings.APP_NAME);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(x -> {
+            x.consume();
+            WindowUtil.loadWindow(Strings.EXIT_LAYOUT_NAME, Strings.EXIT_ITEM_NAME);
+        });
+    }
 
 }

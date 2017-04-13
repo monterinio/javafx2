@@ -11,6 +11,7 @@ import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.Motor;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
+import pl.pwr.workshop.utils.SaveLoadUtil;
 
 public class AddMotorController extends AddValveMotorController implements Initializable, DataProvider {
 
@@ -33,7 +34,7 @@ public class AddMotorController extends AddValveMotorController implements Initi
         addItem.setOnAction(x -> {
             Motor motor = createMotor();
             addItemAndCheckForExistence(motor, data);
-            saveLoadUtil.saveApplicationState(data);
+            SaveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

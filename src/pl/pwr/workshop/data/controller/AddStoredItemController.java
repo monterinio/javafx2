@@ -16,11 +16,6 @@ public abstract class AddStoredItemController {
     protected Button addItem;
     protected Data data;
     protected ArrayList<TextField> textFieldArray;
-    protected SaveLoadUtil saveLoadUtil;
-
-    protected AddStoredItemController() {
-        saveLoadUtil = new SaveLoadUtil();
-    }
 
     protected void initializeButtons() {
         cancel.setOnAction(x -> ((Stage) cancel.getScene().getWindow()).close());

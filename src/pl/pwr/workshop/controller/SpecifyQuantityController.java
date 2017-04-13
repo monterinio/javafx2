@@ -23,12 +23,10 @@ public class SpecifyQuantityController extends CancelButtonController implements
     private Button okButton;
 
     private ArrayList<TextField> list;
-    private WindowUtil windowUtil;
     private OrderedItemsData orderedItemsData;
     private StoredItem rowData;
 
     public SpecifyQuantityController() {
-        windowUtil = new WindowUtil();
         list = new ArrayList<>();
     }
 
@@ -50,7 +48,7 @@ public class SpecifyQuantityController extends CancelButtonController implements
             int requestedQuantity = Integer.parseInt(quantity.getText());
             int actualQuantity = rowData.getQuantity();
             if (requestedQuantity > actualQuantity) {
-                windowUtil.loadWindow(Strings.notEnoughItemsLayoutName, Strings.errorItemName);
+                WindowUtil.loadWindow(Strings.NOT_ENOUGH_ITEMS_LAYOUT_NAME, Strings.ERROR_ITEM_NAME);
             } else {
                 StoredItem orderedDataItem = new StoredItem(rowData);
                 orderedDataItem.setQuantity(requestedQuantity);

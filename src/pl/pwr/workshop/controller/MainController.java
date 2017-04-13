@@ -29,8 +29,6 @@ import pl.pwr.workshop.utils.WindowUtil;
 public class MainController implements Initializable {
 
     private ConnectionData connectionData;
-    private WindowUtil windowUtil;
-    private SaveLoadUtil saveLoadUtil;
     private Data data;
     private OrderedItemsData orderedItemsData;
 
@@ -66,10 +64,8 @@ public class MainController implements Initializable {
     private TableColumn<StoredItem, Integer> quantityColumnOrdered;
 
     public MainController() {
-        saveLoadUtil = new SaveLoadUtil();
-        windowUtil = new WindowUtil();
-        data = saveLoadUtil.loadApplicationState(new Data());
-        connectionData = saveLoadUtil.loadApplicationState();
+        data = SaveLoadUtil.loadApplicationState(new Data());
+        connectionData = SaveLoadUtil.loadApplicationState();
         orderedItemsData = new OrderedItemsData();
     }
 
@@ -81,7 +77,7 @@ public class MainController implements Initializable {
         configureButtons();
         configureChoiceBox();
         refreshTable();
-        choiceBox.setItems(Strings.choiceBox);
+        choiceBox.setItems(Strings.CHOICE_BOX);
     }
 
     private void initializeStoredItemsTable() {
@@ -97,13 +93,62 @@ public class MainController implements Initializable {
         orderedItemsRowFactory();
     }
 
+    private void configureMenuItems() {
+        connectionSettingsItem.setOnAction(x -> WindowUtil.loadWindowAndSendData(Strings.CONNECTION_LAYOUT_NAME,
+                Strings.CONNECTION_SETTINGS_ITEM_NAME, connectionData));
+        aboutItem.setOnAction(x -> WindowUtil.loadWindow(Strings.ABOUT_LAYOUT_NAME, Strings.ABOUT_ITEM_NAME));
+        closeItem.setOnAction(x -> WindowUtil.loadWindow(Strings.EXIT_LAYOUT_NAME, Strings.EXIT_ITEM_NAME));
+    }
+
+    private void configureButtons() {
+        addElement.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> {
+            WindowUtil.loadWindowAndSendData(Strings.ADD_ITEM_LAYOUT_NAME, Strings.ADD_ELEMENT_NAME, data);
+        });
+        refresh.setOnAction(x -> {
+            storedItemsList.refresh();
+        });
+        confirmOrder.setOnAction(x -> {
+            SaveLoadUtil.saveApplicationState(data);
+            WindowUtil.loadWindowAndSendData(Strings.PROCESSING_LAYOUT_NAME, Strings.PROCESSING_LAYOUT_NAME, connectionData,
+                    data, orderedItemsData);
+        });
+        deleteItem.setOnAction(x -> {
+            int selectedItemIndex = storedItemsList.getSelectionModel().getSelectedIndex();
+            if(choiceBox.getSelectionModel().getSelectedIndex() == Strings.PIPE_CABLE) {
+                data.getPipeCableList().remove(selectedItemIndex);
+            } else if(choiceBox.getSelectionModel().getSelectedIndex() == Strings.ELEMENT) {
+                data.getElementList().remove(selectedItemIndex);
+            } else if(choiceBox.getSelectionModel().getSelectedIndex() == Strings.VALVE_MOTOR) {
+                data.getValveMotorList().remove(selectedItemIndex);
+            }
+        });
+    }
+
+    private void configureChoiceBox() {
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
+            if (newValue.intValue() == Strings.PIPE_CABLE) {
+                Bindings.bindContent(storedItemsList.getItems(), data.getPipeCableList());
+            } else if (newValue.intValue() == Strings.ELEMENT) {
+                Bindings.bindContent(storedItemsList.getItems(), data.getElementList());
+            } else if (newValue.intValue() == Strings.VALVE_MOTOR) {
+                Bindings.bindContent(storedItemsList.getItems(), data.getValveMotorList());
+            }
+        });
+    }
+
+    private void refreshTable() {
+        storedItemsList.addEventHandler(MouseEvent.MOUSE_ENTERED, x -> {
+            storedItemsList.refresh();
+        });
+    }
+
     private TableRow<PipeCable> setRowFactory() {
         storedItemsList.setRowFactory(tv -> {
             TableRow<StoredItem> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     StoredItem rowData = getRowElement(row);
-                    windowUtil.loadWindowAndSendData(Strings.specifyQuantityLayoutName, Strings.specifyQuantityName,
+                    WindowUtil.loadWindowAndSendData(Strings.SPECIFY_QUANTITY_LAYOUT_NAME, Strings.SPECIFY_QUANTITY_NAME,
                             rowData, orderedItemsData);
                 }
             });
@@ -114,12 +159,12 @@ public class MainController implements Initializable {
 
     private StoredItem getRowElement(TableRow<StoredItem> row) {
         StoredItem rowData = null;
-        if (choiceBox.getSelectionModel().getSelectedIndex() == 0) {
+        if (choiceBox.getSelectionModel().getSelectedIndex() == Strings.PIPE_CABLE) {
             rowData = (PipeCable) row.getItem();
             System.out.println(rowData.getFullName());
-        } else if (choiceBox.getSelectionModel().getSelectedIndex() == 1) {
+        } else if (choiceBox.getSelectionModel().getSelectedIndex() == Strings.ELEMENT) {
             rowData = (Element) row.getItem();
-        } else if (choiceBox.getSelectionModel().getSelectedIndex() == 2) {
+        } else if (choiceBox.getSelectionModel().getSelectedIndex() == Strings.VALVE_MOTOR) {
             rowData = (ValveMotor) row.getItem();
         }
         return rowData;
@@ -151,55 +196,6 @@ public class MainController implements Initializable {
             }
         }
 
-    }
-
-    private void configureMenuItems() {
-        connectionSettingsItem.setOnAction(x -> windowUtil.loadWindowAndSendData(Strings.connectionLayoutName,
-                Strings.connectionSettingsItemName, connectionData));
-        aboutItem.setOnAction(x -> windowUtil.loadWindow(Strings.aboutLayoutName, Strings.aboutItemName));
-        closeItem.setOnAction(x -> windowUtil.loadWindow(Strings.exitLayoutName, Strings.exitItemName));
-    }
-
-    private void configureButtons() {
-        addElement.addEventHandler(MouseEvent.MOUSE_CLICKED, x -> {
-            windowUtil.loadWindowAndSendData(Strings.addItemLayoutName, Strings.addElementName, data);
-        });
-        refresh.setOnAction(x -> {
-            storedItemsList.refresh();
-        });
-        confirmOrder.setOnAction(x -> {
-            saveLoadUtil.saveApplicationState(data);
-            windowUtil.loadWindowAndSendData(Strings.processingLayoutName, Strings.processingItemName, connectionData,
-                    data, orderedItemsData);
-        });
-        deleteItem.setOnAction(x -> {
-            int selectedItemIndex = storedItemsList.getSelectionModel().getSelectedIndex();
-            if(choiceBox.getSelectionModel().getSelectedIndex() == 0) {
-                data.getPipeCableList().remove(selectedItemIndex);
-            } else if(choiceBox.getSelectionModel().getSelectedIndex() == 1) {
-                data.getElementList().remove(selectedItemIndex);
-            } else if(choiceBox.getSelectionModel().getSelectedIndex() == 2) {
-                data.getValveMotorList().remove(selectedItemIndex);
-            }
-        });
-    }
-
-    private void refreshTable() {
-        storedItemsList.addEventHandler(MouseEvent.MOUSE_ENTERED, x -> {
-            storedItemsList.refresh();
-        });
-    }
-
-    private void configureChoiceBox() {
-        choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
-            if (newValue.intValue() == 0) {
-                Bindings.bindContent(storedItemsList.getItems(), data.getPipeCableList());
-            } else if (newValue.intValue() == 1) {
-                Bindings.bindContent(storedItemsList.getItems(), data.getElementList());
-            } else if (newValue.intValue() == 2) {
-                Bindings.bindContent(storedItemsList.getItems(), data.getValveMotorList());
-            }
-        });
     }
 
     public ConnectionData getConnectionData() {

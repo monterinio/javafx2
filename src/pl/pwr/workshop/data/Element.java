@@ -31,4 +31,7 @@ public class Element extends StoredItem {
         this.setFullName(this.name + "; " + this.type + "; " + this.threadType);
     }
 
+    public Element() {
+    }
+
 }

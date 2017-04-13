@@ -17,7 +17,6 @@ import pl.pwr.workshop.utils.WindowUtil;
 public class AddItemController implements Initializable, DataProvider {
 
     private Stage stage;
-    private WindowUtil windowUtil;
     private Data data;
 
     @FXML
@@ -26,12 +25,11 @@ public class AddItemController implements Initializable, DataProvider {
     private Button next;
 
     public AddItemController() {
-        windowUtil = new WindowUtil();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        choiceBox.setItems(Strings.addItemBox);
+        choiceBox.setItems(Strings.ADD_ITEM_BOX);
         next.setDisable(true);
         choiceBox.setTooltip(new Tooltip("Wybierz kategorie"));
         choiceBox.getSelectionModel().selectedIndexProperty().addListener((v, oldValue, newValue) -> {
@@ -39,8 +37,8 @@ public class AddItemController implements Initializable, DataProvider {
             int choosedOption = newValue.intValue();
             next.setOnAction(x -> {
                 stage = (Stage) choiceBox.getScene().getWindow();
-                windowUtil.loadWindowAndSendData(Strings.addItemLayouts[choosedOption],
-                        Strings.addItemNames[choosedOption], data);
+                WindowUtil.loadWindowAndSendData(Strings.ADD_ITEM_LAYOUTS[choosedOption],
+                        Strings.ADD_ITEM_NAMES[choosedOption], data);
                 stage.close();
             });
         });

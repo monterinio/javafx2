@@ -20,4 +20,8 @@ public class ValveMotor extends StoredItem {
         this.type = type;
     }
 
+    public ValveMotor() {
+        super();
+    }
+
 }

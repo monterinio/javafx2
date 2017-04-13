@@ -8,4 +8,7 @@ public class PipeCable extends StoredItem {
         super(name, length);
     }
 
+    public PipeCable() {
+    }
+
 }

@@ -17,9 +17,6 @@ import pl.pwr.workshop.utils.WindowUtil;
 public class ConnectionController implements Initializable, ConnectionDataProvider {
 
     private ConnectionData connectionData;
-    private RegexUtil regexUtil;
-    private WindowUtil windowUtil;
-    private SaveLoadUtil saveLoadUtil;
 
     @FXML
     private Button cancel;
@@ -34,21 +31,18 @@ public class ConnectionController implements Initializable, ConnectionDataProvid
     private TextField coComputerIP;
 
     public ConnectionController() {
-        saveLoadUtil = new SaveLoadUtil();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         saveAndExit.setOnAction(x -> {
-            regexUtil = new RegexUtil();
-            if (regexUtil.checkIP(serverIP.getText())) {
+            if (RegexUtil.checkIP(serverIP.getText())) {
                 connectionData.setServerIP(serverIP.getText());
                 connectionData.setCoComputerIP(coComputerIP.getText());
-                saveLoadUtil.saveApplicationState(getConnectionData());
+                SaveLoadUtil.saveApplicationState(getConnectionData());
                 ((Stage) saveAndExit.getScene().getWindow()).close();
             } else {
-                windowUtil = new WindowUtil();
-                windowUtil.loadWindow(Strings.IPErrorLayoutName, Strings.errorItemName);
+                WindowUtil.loadWindow(Strings.IP_ERROR_LAYOUT_NAME, Strings.ERROR_ITEM_NAME);
             }
         });
         cancel.setOnAction(x -> ((Stage) cancel.getScene().getWindow()).close());

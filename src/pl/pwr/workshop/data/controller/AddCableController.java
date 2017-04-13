@@ -11,6 +11,7 @@ import pl.pwr.workshop.data.Cable;
 import pl.pwr.workshop.data.Data;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
+import pl.pwr.workshop.utils.SaveLoadUtil;
 
 public class AddCableController extends AddPipeCableController implements Initializable, DataProvider {
 
@@ -35,7 +36,7 @@ public class AddCableController extends AddPipeCableController implements Initia
         addItem.setOnAction(x -> {
             Cable cable = createCable();
             addItemAndCheckForExistence(cable, data);
-            saveLoadUtil.saveApplicationState(data);
+            SaveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

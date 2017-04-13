@@ -18,6 +18,7 @@ import pl.pwr.workshop.data.Screw;
 import pl.pwr.workshop.data.Washer;
 import pl.pwr.workshop.data.utils.TextFieldEmptinessValidation;
 import pl.pwr.workshop.data.utils.TextFieldNumericValidation;
+import pl.pwr.workshop.utils.SaveLoadUtil;
 
 public class AddElementController extends AddStoredItemController implements Initializable, DataProvider {
 
@@ -53,7 +54,7 @@ public class AddElementController extends AddStoredItemController implements Ini
         addItem.setOnAction(x -> {
             Element element = createElement();
             addItemAndCheckForExistence(element, data);
-            saveLoadUtil.saveApplicationState(data);
+            SaveLoadUtil.saveApplicationState(data);
             ((Stage) addItem.getScene().getWindow()).close();
         });
     }

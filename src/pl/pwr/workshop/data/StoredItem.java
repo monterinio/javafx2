@@ -42,6 +42,9 @@ public class StoredItem implements Serializable {
         this.quantity = storedItem.quantity;
     }
 
+    public StoredItem() {
+    }
+
     public void addQuantity(StoredItem storedItem) {
         this.quantity = (this.getQuantity() + storedItem.getQuantity());
     }
